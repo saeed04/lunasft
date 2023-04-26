@@ -24,15 +24,15 @@ tags:
     description: Call Member Balance
   - name: Decrease Credit
     description: decrease your member credit.
-  - name: Game List (Slot Game Only)
+  - name: Game List(Slot Game Only)
     description: Get the game URL with provider_code, the game is redirected to the lobby via this link. See Provider Code Section.
-  - name: Game List (Fish Game Only)
+  - name: Game List(Fish Game Only)
     description: Get the fishing game URL, the game is redirected to the lobby via this link. See Provider Code Section.
   - name: Launch Game
     description: Get the game URL with game_code, the game is redirected to the lobby via this link. See Provider Code Section.
   - name: Login to Lobby
     description: Login with your member name and go to lobby for play game.
-  - name: Game Status (Open/Close)
+  - name: Game Status(Open/Close)
     description: Update the game status by game_code. after update game status your member can't play game.
   - name: Win Loss
     description: Get member win loss records within member time under your agent.
@@ -44,7 +44,7 @@ tags:
     description: Get member win loss records within member time under your agent.
 
 paths:
-  /Create Member:
+  /CreateMember:
     post:
       tags:
         - Create Member
