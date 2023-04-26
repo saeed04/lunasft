@@ -147,10 +147,6 @@ paths:
                   description: |
                     `HMACMD5(username + amount + x-vendor-id)`
                   example: '4d9bf50cdb08e6796a772ca36f0d0dff'
-              required:
-                - username
-                - amount
-                - sign
       responses:
         '200':
           description: successful 
