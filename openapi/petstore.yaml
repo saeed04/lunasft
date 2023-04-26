@@ -202,13 +202,6 @@ paths:
                 username:
                   type: string
                   example: member001
-                new_password:
-                  type: string
-                  example: 1234@b
-                sign:
-                  type: string
-                  description: |
-                    `HMACMD5(username + new_password + x-vendor-id)`
-                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+ 
  
   
