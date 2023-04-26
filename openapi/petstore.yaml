@@ -103,8 +103,6 @@ paths:
           description: successful 
         '500':
           description: Error
-          
-          
   /balance:
     post:
       summary: 'Member Balance'
@@ -115,9 +113,6 @@ paths:
           description: successful 
         '500':
           description: Error
-          
-          
-
   /pet/findByTags:
     get:
       tags:
