@@ -190,18 +190,6 @@ paths:
                     example: 15001,
                     servers:
 
-  /change_password:
-   post:
-      summary:  Change Password
-      description: Change member password by agent.
-      requestBody:
-        content:
-          application/json:
-                       schema:
-              properties:
-                username:
-                  type: string
-                  example: member001
  
  
   
