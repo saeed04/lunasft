@@ -126,7 +126,36 @@ paths:
           description: successful 
         '500':
           description: Error
-     
+          
+            /increase_credit:
+    post:
+      summary: 'Increase Credit'
+      description: increase your member credit.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                amount:
+                  type: number
+                  example: 50.0
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + amount + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - username
+                - amount
+                - sign
+      responses:
+        '200':
+          description: successful 
+        '500':
+          description: Error
   '/pet/{petId}':
     get:
       tags:
