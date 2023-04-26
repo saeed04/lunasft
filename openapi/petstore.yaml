@@ -104,15 +104,6 @@ paths:
         '500':
           description: Error
   /balance:
-    post:
-      summary: 'Member Balance'
-      description: 'Call Member Balance'
-          responses:
-        '200':
-          $ref: "#/components/responses/PetResponse"
-        '400':
-          description: Invalid tag value
-  /pet/findByTags:
     get:
       tags:
         - pet
