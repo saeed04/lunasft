@@ -128,36 +128,31 @@ paths:
           description: Error       
           
   '/increase_credit':
-    get:
-      tags:
-        - pet
-      summary: Find pet by ID
-      description: Returns a single pet
-      operationId: getPetById
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to return
-          required: true
-          schema:
-            type: integer
-            format: int64
+    post:
+      summary: 'Increase Credit'
+      description: increase your member credit.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                amount:
+                  type: number
+                  example: 50.0
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + amount + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
       responses:
         '200':
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Pet'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-      security:
-        - api_key: []
+          description: successful
+        '500':
+          description: Error
+
     post:
       tags:
         - pet
