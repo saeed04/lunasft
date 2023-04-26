@@ -179,39 +179,29 @@ paths:
         '500':
           description: Error
           
-  '/store/order/{orderId}':
+  '/game_list':
     get:
-      tags:
-        - store
-      summary: Find purchase order by ID
-      description: >-
-        For valid response try integer IDs with value >= 1 and <= 10. Other
-        values will generated exceptions
-      operationId: getOrderById
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of pet that needs to be fetched
-          required: true
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-            maximum: 10
+      summary: 'Game List (Slot Game Only)'
+      description: |
+        Get the game URL with provider_code, the game is redirected to the lobby via this link. See **Provider Code** Section.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                provider_code:
+                  type: string
+                  example: "JK"
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(provider_code + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
       responses:
         '200':
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Order'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Order not found
+          description: successful
+        '500':
+          description: Error
     delete:
       tags:
         - store
