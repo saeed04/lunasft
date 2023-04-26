@@ -158,7 +158,7 @@ paths:
       summary: 'Decrease Credit'
       description: decrease your member credit.
        requestBody:
-        content:
+       content:
           application/json:
             schema:
               properties:
