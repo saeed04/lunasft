@@ -69,7 +69,7 @@ paths:
                 - sign
       responses:
         '200':
-          description: OK
+          description: successful
         '500':
           description: Error
 
@@ -100,16 +100,11 @@ paths:
                 - sign
       responses:
         '200':
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Order'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
+          description: successful 
         '500':
           description: Error
+          
+          
 
   /pet/findByTags:
     get:
