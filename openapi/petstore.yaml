@@ -202,9 +202,6 @@ paths:
           description: successful
         '500':
           description: Error
-          
-   /game_fishing:
-    get:
-      summary: 'Game List (Fish Game Only)'
+
  
  
