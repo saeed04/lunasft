@@ -233,16 +233,7 @@ paths:
                         example: 'member001'
                         minLength: 6
                         maxLength: 24
-        '500':
-          description: 'Error'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status_code:
-                    type: integer
-                    example: 15001,
+
  
   /store/inventory:
     get:
