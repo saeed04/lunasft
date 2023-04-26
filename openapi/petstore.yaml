@@ -105,7 +105,7 @@ paths:
           description: Error
   /balance:
     post:
- summary: 'Member Balance'
+      summary: 'Member Balance'
       description: 'Call Member Balance'
       requestBody:
         content:
@@ -116,10 +116,6 @@ paths:
                 username:
                   type: string
                   example: 'member001'
-  
-              required:
-                - username
-                - sign
       responses:
         '200':
           $ref: "#/components/responses/PetResponse"
