@@ -102,7 +102,24 @@ paths:
                         minLength: 6
                         maxLength: 24
         '500':
-          description: Error
+          description: 'Error'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 15001,
+
+                  payload:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        example: 'null'
+                        minLength: 6
+                        maxLength: 24
 
   /store/inventory:
     get:
