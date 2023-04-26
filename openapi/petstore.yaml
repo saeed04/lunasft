@@ -188,7 +188,7 @@ paths:
                   status_code:
                     type: integer
                     example: 15001,
-  /change_password:
+  /changepassword:
    post:
       summary:  Change Password
       description: |
