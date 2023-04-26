@@ -29,7 +29,7 @@ tags:
       description: Find out more about our store
       url: 'http://swagger.io'
 paths:
-  /pet:
+  /create_member:
     post:
       summary: Create Member
       description: |
@@ -75,27 +75,30 @@ paths:
 
  
   /change_password:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by status
-      description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
-      parameters:
-        - name: status
-          in: query
-          description: Status values that need to be considered for filter
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - available
-                - pending
-                - sold
-              default: available
+    post:
+      summary:  Change Password
+      description: Change member password by agent.
+      operationId: 
+     requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: member001
+                new_password:
+                  type: string
+                  example: 1234@b
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + new_password + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - username
+                - password
+                - sign
       responses:
         '200':
           description: successful operation
