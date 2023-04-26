@@ -113,8 +113,8 @@ paths:
                     example: 15001,
 
                   payload:
-                    type: object
-                    properties: []
+                    type: string
+                    properties: "null"
 
   /store/inventory:
     get:
