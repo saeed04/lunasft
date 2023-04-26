@@ -236,10 +236,6 @@ paths:
                     type: integer
                     example: 15001,
 
-                  payload:
-                    type: object
-
-
   /store/inventory:
     get:
       tags:
