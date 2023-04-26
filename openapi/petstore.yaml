@@ -115,11 +115,6 @@ paths:
                   payload:
                     type: object
                     properties:
-                      username:
-                        type: string
-                        example: 'null'
-                        minLength: 6
-                        maxLength: 24
 
   /store/inventory:
     get:
