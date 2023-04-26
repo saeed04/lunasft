@@ -47,8 +47,8 @@ paths:
   /pet:
     post:
       tags:
-        - pet
-      summary: Updates a pet in the store with form data
+        - Create Member
+      summary: member is unique value. we recommended to add prefixes when register ex blsmb0001
       description: ''
       operationId: updatePetWithForm
       parameters:
