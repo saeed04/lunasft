@@ -102,8 +102,7 @@ paths:
                         minLength: 6
                         maxLength: 24
         '500':
-          description: OK
-          $ref: '#/components/responses/error'
+          description: Error
 
   /store/inventory:
     get:
