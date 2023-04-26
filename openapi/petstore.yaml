@@ -202,30 +202,26 @@ paths:
           description: successful
         '500':
           description: Error
-    delete:
-      tags:
-        - store
-      summary: Delete purchase order by ID
-      description: >-
-        For valid response try integer IDs with positive integer value. Negative
-        or non-integer values will generate API errors
-      operationId: deleteOrder
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of the order that needs to be deleted
-          required: true
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
+     /game_list_fishing:
+       post:
+      summary: 'Game List (Fish Game Only)'
+      description: |
+        Get the fishing game URL, the game is redirected to the lobby via this link. See **Provider Code** Section.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(provider_code + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
       responses:
         '200':
-          description: OK
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Order not found
+          description: successful
+        '500':
+          description: Error
   /user:
     post:
       tags:
