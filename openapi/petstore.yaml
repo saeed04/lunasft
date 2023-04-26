@@ -104,24 +104,27 @@ paths:
         '500':
           description: Error
   /balance:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by tags
-      description: >-
-        Muliple tags can be provided with comma separated strings. Use tag1,
-        tag2, tag3 for testing.
-      operationId: findPetsByTags
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter by
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+    post:
+
+ summary: 'Member Balance'
+      description: 'Call Member Balance'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
+              required:
+                - username
+                - sign
       responses:
         '200':
           $ref: "#/components/responses/PetResponse"
