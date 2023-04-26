@@ -107,12 +107,11 @@ paths:
     post:
       summary: 'Member Balance'
       description: 'Call Member Balance'
-
-       responses:
+          responses:
         '200':
-          description: successful 
-        '500':
-          description: Error
+          $ref: "#/components/responses/PetResponse"
+        '400':
+          description: Invalid tag value
   /pet/findByTags:
     get:
       tags:
