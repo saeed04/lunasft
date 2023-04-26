@@ -202,27 +202,7 @@ paths:
           description: successful
         '500':
           description: Error
-     /game_list_fishing:
-       post:
-      summary: 'Game List (Fish Game Only)'
-      description: |
-        Get the fishing game URL, the game is redirected to the lobby via this link. See **Provider Code** Section.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                sign:
-                  type: string
-                  description: |
-                    `HMACMD5(provider_code + x-vendor-id)`
-                  example: 'a3b2f435648d8a38eabb7d968332701b'
-      responses:
-        '200':
-          description: successful
-        '500':
-          description: Error
-  /user:
+  /game_list_fishing:
     post:
       tags:
         - user
@@ -239,6 +219,11 @@ paths:
               $ref: '#/components/schemas/User'
         description: Created user object
         required: true
+              responses:
+        '200':
+          description: successful
+        '500':
+          description: Error
   /user/createWithArray:
     post:
       tags:
