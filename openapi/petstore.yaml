@@ -164,11 +164,22 @@ paths:
         '500':
           description: Error
       requestBody:
+       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Order'
-        description: order placed for purchasing the pet
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                amount:
+                  type: number
+                  example: 50.0
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + amount + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
         required: true
   '/store/order/{orderId}':
     get:
