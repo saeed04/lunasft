@@ -163,7 +163,6 @@ paths:
           description: successful
         '500':
           description: Error
-      requestBody:
        requestBody:
         content:
           application/json:
