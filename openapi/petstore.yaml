@@ -48,26 +48,24 @@ paths:
     post:
       tags:
         - Create Member
-      summary: member is unique value. we recommended to add prefixes when register ex blsmb0001
+      summary: ''
       description: ''
       operationId: updatePetWithForm
       parameters:
-        - name: petId
+        - name: username
           in: path
-          description: ID of pet that needs to be updated
+          description: ''
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
+            format: [ 6 .. 24 ] characters
+            
       responses:
         '200':
           description: OK
         '405':
           description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+
       requestBody:
         content:
           application/x-www-form-urlencoded:
