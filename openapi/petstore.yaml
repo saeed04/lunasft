@@ -99,8 +99,15 @@ paths:
                 - password
                 - sign
       responses:
-         '200':
-          description: OK
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
         '500':
           description: Error
 
