@@ -44,7 +44,7 @@ tags:
     description: Get member win loss records within member time under your agent.
 
 paths:
-  /CreateMember:
+  /pet:
     post:
       tags:
         - Create Member
