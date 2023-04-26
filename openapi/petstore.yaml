@@ -155,23 +155,14 @@ paths:
 
   /decrease_credit:
     post:
-      tags:
-        - store
-      summary: Place an order for a pet
-      description: ''
+      summary: 'Decrease Credit'
+      description: decrease your member credit.
       operationId: placeOrder
       responses:
         '200':
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Order'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
-        '400':
-          description: Invalid Order
+          description: successful
+        '500':
+          description: Error
       requestBody:
         content:
           application/json:
