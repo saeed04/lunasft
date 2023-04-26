@@ -58,9 +58,9 @@ paths:
 
       requestBody:
         content:
-          application/json:
+         application/x-www-form-urlencoded:
             schema:
-              type: object
+              type: application/json
               properties:
                 username:
                   description: string [ 6 .. 18 ] characters
