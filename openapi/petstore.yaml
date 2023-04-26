@@ -164,4 +164,49 @@ paths:
           description: 'Response Success'
         '500':
           description: 'Response error'
+          
+   /change_password:
+   post:
+      summary: Change Password
+      description: |
+        member is unique value. we recommended to add prefixes when register ex blsmb0001
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                  minLength: 6
+                  maxLength: 18
+                password:
+                  type: string
+                  example: 'a@1234'
+                  description: 'Password should be at 6 - 24 characters long and at least one special character.'
+                  minLength: 6
+                  maxLength: 24
+                phone_number_contact:
+                  type: string
+                  example: '098765431'
+                  minLength: 9
+                memo:
+                  type: string
+                  example : 'memo'
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + password + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - username
+                - password
+                - sign
+       responses:
+        '200':
+          description: 'Response Success'
+        '500':
+          description: 'Response error'
+  
   
