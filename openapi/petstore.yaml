@@ -47,25 +47,6 @@ paths:
   /pet:
     post:
       tags:
-        - Create Member
-      summary: Add a new pet to the store
-      description: ''
-      operationId: addPet
-      responses:
-        '200':
-          description: OK
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      requestBody:
-        $ref: '#/components/requestBodies/Pet'
-
-
-    post:
-      tags:
         - pet
       summary: Updates a pet in the store with form data
       description: ''
