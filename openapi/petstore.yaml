@@ -4,7 +4,7 @@ info:
   version: 1.0.10
   x-logo:
       url:
-        /logo.png
+        https://openapi.blsft.com/logo.png
       backgroundColor:
         #FFFFFF
       altText:
@@ -125,7 +125,7 @@ info:
     email: developer@billionsoft.co
 
 servers:
-  - url: https://{endpoint_url}
+  - url: https://openapi.blsft.com
 paths:
   /create_member:
     post:
