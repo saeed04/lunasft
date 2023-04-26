@@ -206,6 +206,5 @@ paths:
    /game_list_fishing:
     get:
       summary: 'Game List (Fish Game Only)'
-      description: Get the fishing game URL, the game is redirected to the lobby via this link. See **Provider Code** Section.
  
  
