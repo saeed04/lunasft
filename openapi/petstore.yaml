@@ -112,9 +112,7 @@ paths:
                     type: integer
                     example: 15001,
 
-                  payload:
-                    type: string
-                    properties: "null"
+                  payload: []
 
   /store/inventory:
     get:
