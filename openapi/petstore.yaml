@@ -123,14 +123,10 @@ paths:
                   example: 'a3b2f435648d8a38eabb7d968332701b'
       responses:
         '200':
-          $ref: "#/components/responses/PetResponse"
-        '400':
-          description: Invalid tag value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      deprecated: true
+          description: successful 
+        '500':
+          description: Error
+     
   '/pet/{petId}':
     get:
       tags:
