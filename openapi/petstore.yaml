@@ -125,9 +125,8 @@ paths:
         '200':
           description: successful 
         '500':
-          description: Error
-          
-            /increase_credit:
+          description: Error       
+   /increase_credit:
     post:
       summary: 'Increase Credit'
       description: increase your member credit.
@@ -135,6 +134,7 @@ paths:
         content:
           application/json:
             schema:
+             type: object
               properties:
                 username:
                   type: string
@@ -152,6 +152,7 @@ paths:
           description: successful 
         '500':
           description: Error
+          
   '/pet/{petId}':
     get:
       tags:
