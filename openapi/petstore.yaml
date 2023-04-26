@@ -214,25 +214,7 @@ paths:
                 - username
                 - password
                 - sign
-      responses:
-        '200':
-          description: 'Response Success'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status_code:
-                    type: integer
-                    example: 0
-                  payload:
-                    type: object
-                    properties:
-                      username:
-                        type: string
-                        example: 'member001'
-                        minLength: 6
-                        maxLength: 24
+
 
  
   /store/inventory:
