@@ -112,7 +112,6 @@ paths:
                     type: integer
                     example: 15001,
 
-                  payload: []
 
   /store/inventory:
     get:
