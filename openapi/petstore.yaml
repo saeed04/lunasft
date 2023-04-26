@@ -144,10 +144,11 @@ tags:
     description: Get member win loss records within member time under your agent.
   - name: Win Loss
     description: Get member win loss records within member time under your agent.
+    
 servers:
   - url: https://{endpoint_url}
 paths:
-  /pet:
+  /create_member:
    post:
       summary: Create Member
       description: |
