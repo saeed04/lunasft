@@ -48,16 +48,7 @@ paths:
     post:
       tags:
         - Create Member
-      summary: ''
-      description: ''
-      operationId: updatePetWithForm
-      parameters:
-        - name: username
-          in: path
-          description: ''
-          required: true
-          schema:
-            type: string
+
             
       responses:
         '200':
@@ -67,16 +58,26 @@ paths:
 
       requestBody:
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               type: object
               properties:
-                name:
-                  description: Updated name of the pet
+                username:
+                  description: string [ 6 .. 18 ] characters
                   type: string
-                status:
-                  description: Updated status of the pet
+                password:
+                  description: Password should be at 6 - 24 characters long and at least one special character.
                   type: string
+                phone_number_contact:
+                  description: [ 6 .. 24 ] characters
+                  type: string
+                memo:
+                  description: string >= 9 characters
+                  type: string
+                sign:
+                  description: [ 6 .. 24 ] characters
+                  type: string
+
 
   /store/inventory:
     get:
