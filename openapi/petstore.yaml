@@ -116,6 +116,11 @@ paths:
                 username:
                   type: string
                   example: 'member001'
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
       responses:
         '200':
           $ref: "#/components/responses/PetResponse"
