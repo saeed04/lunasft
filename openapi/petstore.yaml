@@ -8,10 +8,10 @@ info:
     #swagger](http://swagger.io/irc/).  For this sample, you can use the api key
     `special-key` to test the authorization filters.
   version: 1.0.0
-  title: Swagger Petstore
+  title: LunaSoft Product API (1.0.10)
   termsOfService: 'http://swagger.io/terms/'
   contact:
-    email: apiteam@swagger.io
+    email: developer@lunasoft.co
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -21,13 +21,33 @@ tags:
     externalDocs:
       description: Find out more
       url: 'http://swagger.io'
-  - name: store
-    description: Access to Petstore orders
-  - name: user
-    description: Operations about user
-    externalDocs:
-      description: Find out more about our store
-      url: 'http://swagger.io'
+  - name: Create Member
+    description: member is unique value. we recommended to add prefixes when register ex blsmb0001
+  - name: Change Password
+    description: Change member password by agent.
+  - name: Member Balance
+    description: Call Member Balance
+  - name: Decrease Credit
+    description: decrease your member credit.
+  - name: Game List (Slot Game Only)
+    description: Get the game URL with provider_code, the game is redirected to the lobby via this link. See Provider Code Section.
+  - name: Game List (Fish Game Only)
+    description: Get the fishing game URL, the game is redirected to the lobby via this link. See Provider Code Section.
+  - name: Launch Game
+    description: Get the game URL with game_code, the game is redirected to the lobby via this link. See Provider Code Section.
+  - name: Login to Lobby
+    description: Login with your member name and go to lobby for play game.
+  - name: Game Status (Open/Close)
+    description: Update the game status by game_code. after update game status your member can't play game.
+  - name: Win Loss
+    description: Get member win loss records within member time under your agent.
+  - name: statement
+    description: Get credit statement record within members under your agent.
+  - name: Win Loss
+    description: Get member win loss records within member time under your agent.
+  - name: Win Loss
+    description: Get member win loss records within member time under your agent.
+
 paths:
   /pet:
     post:
