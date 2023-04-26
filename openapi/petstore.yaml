@@ -58,7 +58,6 @@ paths:
           required: true
           schema:
             type: string
-            format: [ 6 .. 24 ] characters
             
       responses:
         '200':
