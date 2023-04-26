@@ -114,7 +114,7 @@ paths:
 
                   payload:
                     type: object
-                    properties: null
+                    properties: []
 
   /store/inventory:
     get:
