@@ -153,45 +153,32 @@ paths:
         '500':
           description: Error
 
-  '/pet/{petId}/uploadImage':
+ /decrease_credit:
     post:
-      tags:
-        - pet
-      summary: uploads an image
-      description: ''
-      operationId: uploadFile
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to update
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiResponse'
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      requestBody:
+      summary: 'Decrease Credit'
+      description: decrease your member credit.
+       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
-              type: object
               properties:
-                additionalMetadata:
-                  description: Additional data to pass to server
+                username:
                   type: string
-                file:
-                  description: file to upload
+                  example: 'member001'
+                amount:
+                  type: number
+                  example: 50.0
+                sign:
                   type: string
-                  format: binary
+                  description: |
+                    `HMACMD5(username + amount + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+ responses:
+        '200':
+          description: successful
+        '500':
+          description: Error
+
   /store/inventory:
     get:
       tags:
