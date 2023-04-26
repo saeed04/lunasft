@@ -105,6 +105,34 @@ paths:
           description: Error
           
           
+  /balance:
+    post:
+      summary: 'Member Balance'
+      description: 'Call Member Balance'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
+              required:
+                - username
+                - sign
+       responses:
+        '200':
+          description: successful 
+        '500':
+          description: Error
+          
+          
 
   /pet/findByTags:
     get:
