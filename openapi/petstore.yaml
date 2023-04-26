@@ -1,20 +1,122 @@
-openapi: 3.0.3
-servers:
-  - url: '//petstore.swagger.io/v2'
+openapi: 3.0.0
 info:
-  description: >-
-    This is a sample server Petstore server.  You can find out more about
-    Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
-    #swagger](http://swagger.io/irc/).  For this sample, you can use the api key
-    `special-key` to test the authorization filters.
-  version: 1.0.0
-  title: LunaSoft Product API (1.0.10)
-  termsOfService: 'http://swagger.io/terms/'
+  title: LunaSoft Product API
+  version: 1.0.10
+
+  description: |
+    LST Product API for client integrate our product on fund wallet
+
+    > Lunasoft will send the test integration with `(endpoint_url)`, `(X-BLS-KEY)`, `(X-Vendor-ID)`, `(Sign)`
+    to you. Your service agent must provider credential. which should be successfully integrated.
+
+    ---
+
+    ### Release Version:
+
+    V1.0.0 - 2023/01/25
+    - Add create member, increase / decrease credit, and balance.
+
+    V1.0.1 - 2023/01/31
+    - Add launch game and game status.
+
+    V1.0.2 - 2023/02/15
+    - Add win loss, statement, outstanding and outstanding detail report.
+
+    V1.0.3 - 2023/02/27
+    - Update response status code.
+
+    V1.0.4 - 2023/03/01
+    - Update game code.
+    - Update request body in route `/report/outstanding` and `/report/outstanding_detail`.
+
+    V1.0.5 - 2023/03/03
+    - Add game list.
+    
+    V1.0.6 - 2023/03/16
+    - Add game_code in request body in route `/report/...`.
+    - Update request body in route `/report/outstanding` .
+    
+    V1.0.7 - 2023/03/16
+    - Change game_code to provider_code in route `/report/...`
+    - Update request body in route `/launch_game`
+    
+    V1.0.8 - 2023/03/31
+    - Add game_list_fishing
+    
+    V1.0.9 - 2023/04/08
+    - Add member login to lobby
+
+    V1.0.9 - 2023/04/10
+    - Add bet log
+    - Remove outstanding detail
+    - Update body of win loss report and outstanding
+    
+    ---
+
+    ### Authorization:
+    | Key | In | Description 
+    |-----|-----|-----
+    | X-BLS-Key | Header |  BillionSoft Key please ask our information
+    | X-Vendor-ID | Header | Vendor ID generate by BillionSoft ask our information
+    | Sign | Body | Sign is the signature key
+
+    </br>
+
+    ### Status Code:
+    | Status Code | Description
+    |-----|-----
+    | 0 | Response Success
+    | 14001 | Missing Body
+    | 14002 | Invalid Body Type
+    | 14003 | Invalid Body Pattern
+    | 14004 | Credit Insufficient
+    | 14006 | Member not found 
+    | 14031 | Access Denied
+    | 14012 | Unauthorized
+    | 14091 | Data not found
+    | 14092 | Data duplication
+    | 15001 | Service Error <b>Please contact support.</b>
+
+    </br>
+
+    ### Game Code:
+    | Provider Code | Provider Name
+    |-----|-----
+    | JK | JokerGaming
+    | PG | PGSoft
+    | PP | PragmaticPlay
+    | AMBS | AMB Slot
+    | AMBP | AMB Poker
+    | RT | Red Tiger
+    | CQ9 | CQ9
+    | SPG | Spade Gaming
+    | JL | Jili
+    | DGS | DragoonSoft
+    | NSP | Next Spin
+    | SPP | Simple Play
+    | I8 | i8Games
+    | EDP | Endorphina
+    | PPL | PlayPearls
+    | JP | JustPlay
+    | NET | NetEnt
+    | SML | Slot Mill
+    | SA | SA Gaming
+    | SX | SexyBaccarat
+    | WM | WM Casino
+    | XT | XtreamGaming
+    | AB | AllBet
+    | DGC | DreamGaming
+    | VVG | VivoGaming
+    | BG | Big Gaming
+    | EBT | EBET
+    | PPC | PragmaticPlay Casino
+    | UBT | UBETT
+    | RG | Royal GClub
+    | RSG | Royal Slot Game
+
   contact:
+    name: API Support LunaSoft Team
     email: developer@lunasoft.co
-  license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
   - name: Create Member
     description: member is unique value. we recommended to add prefixes when register ex blsmb0001
