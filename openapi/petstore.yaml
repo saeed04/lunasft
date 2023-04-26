@@ -127,7 +127,7 @@ info:
 servers:
   - url: https://openapi.blsft.com
 paths:
-  /create_member:
+  https://openapi.blsft.com/create_member:
     post:
       summary: Create Member
       description: |
@@ -188,7 +188,7 @@ paths:
           description: 'Response Error'
           $ref: '#/components/responses/error'
 
-  /change_password:
+  https://openapi.blsft.com/change_password:
     post:
       summary: Change Password
       description: Change member password by agent.
@@ -227,10 +227,10 @@ paths:
                     example: null
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
+          $ref: ' https://openapi.blsft.com/components/responses/error'
 
 
-  /balance:
+   https://openapi.blsft.com/balance:
     post:
       summary: 'Member Balance'
       description: 'Call Member Balance'
@@ -275,7 +275,7 @@ paths:
           description: 'Response Error'
           $ref: '#/components/responses/error'
 
-  /increase_credit:
+   https://openapi.blsft.com/increase_credit:
     post:
       summary: 'Increase Credit'
       description: increase your member credit.
@@ -321,9 +321,9 @@ paths:
                         example: 150.25
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
+          $ref: ' https://openapi.blsft.com/components/responses/error'
 
-  /decrease_credit:
+   https://openapi.blsft.com/decrease_credit:
     post:
       summary: 'Decrease Credit'
       description: decrease your member credit.
@@ -371,7 +371,7 @@ paths:
           description: 'Response Error'
           $ref: '#/components/responses/error'
   
-  /game_list:
+   https://openapi.blsft.com/game_list:
     post:
       summary: 'Game List (Slot Game Only)'
       description: |
@@ -435,7 +435,7 @@ paths:
           description: 'Response Error'
           $ref: '#/components/responses/error'
 
-  /game_list_fishing:
+   https://openapi.blsft.com/game_list_fishing:
     post:
       summary: 'Game List (Fish Game Only)'
       description: |
@@ -498,7 +498,7 @@ paths:
           description: 'Response Error'
           $ref: '#/components/responses/error'
 
-  /launch_game:
+   https://openapi.blsft.com/launch_game:
     post:
       summary: 'Launch Game'
       description: |
@@ -555,7 +555,7 @@ paths:
           description: 'Response Error'
           $ref: '#/components/responses/error'
 
-  /login:
+   https://openapi.blsft.com/login:
     post:
       summary: 'Login to Lobby'
       description: |
@@ -606,7 +606,7 @@ paths:
           description: 'Response Error'
           $ref: '#/components/responses/error'
 
-  /update_game_status:
+   https://openapi.blsft.com/update_game_status:
     post:
       summary: Game Status (Open/Close)
       description: Update the game status by game_code. after update game status your member can't play game.
@@ -657,7 +657,7 @@ paths:
           description: 'Response Error'
           $ref: '#/components/responses/error'
 
-  /report/win_loss:
+   https://openapi.blsft.com/report/win_loss:
     post:
       summary: 'Win Loss'
       description: Get member win loss records within member time under your agent.
@@ -730,7 +730,7 @@ paths:
                       data:
                         type: array
                         items:
-                          $ref: '#/components/schemas/WL'
+                          $ref: ' https://openapi.blsft.com/components/schemas/WL'
                       total_turn_over:
                         type: number
                         example: 5000.0
@@ -765,7 +765,7 @@ paths:
           description: 'Response Error'
           $ref: '#/components/responses/error'
 
-  /report/statement:
+   https://openapi.blsft.com/report/statement:
     post:
       summary: 'Statement'
       description: Get credit statement record within members under your agent.
@@ -856,9 +856,9 @@ paths:
                               example: ''
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
+          $ref: ' https://openapi.blsft.com/components/responses/error'
           
-  /report/outstanding:
+   https://openapi.blsft.com/report/outstanding:
     post:
       summary: 'Outstanding'
       description: find unsettled record each game within member played.
