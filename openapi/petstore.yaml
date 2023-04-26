@@ -212,7 +212,7 @@ paths:
                   example: '4d9bf50cdb08e6796a772ca36f0d0dff'
               required:
                 - username
-                - password
+                - new_password
                 - sign
 
 
