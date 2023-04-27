@@ -207,41 +207,11 @@ paths:
     post:
       summary: Game List (Fish Game Only)
       description:  Get the fishing game URL, the game is redirected to the lobby via this link. See **Provider Code** Section.
-      parameters:
-        - name: status
-          in: query
-          description: Status values that need to be considered for filter
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - available
-                - pending
-                - sold
-              default: available
-      responses:
+     responses:
         '200':
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid status value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+          description: successful
+        '500':
+          description: Error
   /launch_game:
     post:
       summary: Launch Game
