@@ -400,10 +400,7 @@ paths:
                   type: string
                   description: open, close
                   example: "close"
-                sign:
-                  type: string
-                  description: |
-                    `HMACMD5(provider_code + x-vendor-id)`
+
       responses:
       '200':
         description: successful 
