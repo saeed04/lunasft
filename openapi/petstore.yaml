@@ -3,13 +3,7 @@ openapi: 3.0.3
 info:
   title: LunaSoft Product API
   version: 1.0.10
-  x-logo:
-      url:
-        logolunasft.jpg
-      backgroundColor:
-        #FFFFFF
-      altText:
-       LunaSoft logo
+
   description: |
     LunaSoft Product API for client integrate our product on fund wallet
 
