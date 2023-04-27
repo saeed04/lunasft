@@ -203,7 +203,7 @@ paths:
         '500':
           description: Error
       
-  /pet/findByStatus:
+  /game_list_fishing:
     get:
       tags:
         - pet
