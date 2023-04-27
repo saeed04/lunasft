@@ -383,7 +383,8 @@ paths:
         '200':
           description: successful 
         '500':
-          description: Error        
+          description: Error    
+          
   /update_game_status:
     post:
       summary: Game Status (Open/Close)
@@ -408,7 +409,7 @@ paths:
                   type: string
                   description: |
                     `HMACMD5(provider_code + x-vendor-id)`
-                         responses:
+     responses:
         '200':
           description: successful 
         '500':
