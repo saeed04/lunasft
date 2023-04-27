@@ -309,7 +309,7 @@ paths:
                     `HMACMD5(provider_code + x-vendor-id)`
       responses:
         '200':
-          $ref: "#/components/responses/PetResponse"
+          description: successful 
         '500':
           description: Error
           
@@ -384,34 +384,30 @@ paths:
     post:
       summary: Game Status (Open/Close)
       description: Update the game status by game_code. after update game status your member can't play game.
-      responses:
-        default:
-          description: successful operation
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-        description: Created user object
-        required: true
+ responses:
+        '200':
+          description: successful 
+        '500':
+          description: Error
+        
   /report/win_loss:
     post:
       summary: Win Loss
       description: Get member win loss records within member time under your agent.
-      responses:
-        default:
-          description: successful operation
-      requestBody:
-        $ref: '#/components/requestBodies/UserArray'
+ responses:
+        '200':
+          description: successful 
+        '500':
+          description: Error
   /report/statement:
     post:
       summary: Statement
       description: Get credit statement record within members under your agent.
-      responses:
-        default:
-          description: successful operation
-      requestBody:
-        $ref: '#/components/requestBodies/UserArray'
+ responses:
+        '200':
+          description: successful 
+        '500':
+          description: Error
   /report/outstanding:
     post:
       summary: Outstanding
@@ -429,34 +425,18 @@ paths:
           required: true
           schema:
             type: string
-      responses:
+ responses:
         '200':
-          description: successful operation
-          headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user
-              schema:
-                type: integer
-                format: int32
-            X-Expires-After:
-              description: date in UTC when token expires
-              schema:
-                type: string
-                format: date-time
-          content:
-            application/xml:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
-        '400':
-          description: Invalid username/password supplied
+          description: successful 
+        '500':
+          description: Error
   /report/bet_log:
     post:
       summary: Bet Log
       description: find bet log detail record each game within member played.
-      responses:
-        default:
-          description: successful operation
+ responses:
+        '200':
+          description: successful 
+        '500':
+          description: Error
  
