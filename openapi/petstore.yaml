@@ -4,7 +4,9 @@ servers:
 info:
   title: Lnsoftapi Product API
   version: 1.0.10
-
+  x-logo:
+    url: 'https://redocly.github.io/redoc/petstore-logo.png'
+    altText: Lnsoftapi
   description: |
     Lnsoftapi Product API for client integrate our product on fund wallet
 
