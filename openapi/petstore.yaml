@@ -204,12 +204,9 @@ paths:
           description: Error
       
   /game_list_fishing:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by status
-      description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
+    post:
+      summary: Game List (Fish Game Only)
+      description:  Get the fishing game URL, the game is redirected to the lobby via this link. See **Provider Code** Section.
       parameters:
         - name: status
           in: query
