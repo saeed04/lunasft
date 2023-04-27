@@ -1,9 +1,9 @@
 openapi: 3.0.3
-title: LunaSoft Product API
-version: 1.0.10
 servers:
   - url: 'https://{endpoint_url}'
 info:
+  title: LunaSoft Product API
+  version: 1.0.10
   description: >-
     BLS Product API for client integrate our product on fund wallet
 
