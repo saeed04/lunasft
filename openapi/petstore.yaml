@@ -412,10 +412,9 @@ paths:
         '500':
           description: Error  
           
-          
     /report/win_loss:
     post:
-      summary: 'Win Loss'
+      summary: Win Loss
       description: Get member win loss records within member time under your agent.
       requestBody:
         content:
@@ -451,7 +450,6 @@ paths:
                   type: string
                   description: |
                     `HMACMD5(start_date + end_date + x-vendor-id)`
-
                     start_date and end_date format=YYYY-MM-DD
                   example: '4d9bf50cdb08e6796a772ca36f0d0dff'
               required:
@@ -514,4 +512,4 @@ paths:
                         type: number
                         example: 10.0
         '500':
-          description: 'Response Error'
+          description: Response Error
