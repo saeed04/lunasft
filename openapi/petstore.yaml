@@ -226,7 +226,32 @@ paths:
     post:
       summary: Launch Game
       description:  Get the game URL with game_code, the game is redirected to the lobby via this link. See **Provider Code** Section.
-
+ requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                game_code:
+                  type: string
+                  example: "1"
+                provider_code:
+                  type: string
+                  example: "JK"
+                language:
+                  type: string
+                  description: Support TH, EN, CN
+                  example: "TH"
+                platform:
+                  type: string
+                  description: 1 = Desktop, 2 = Mobile
+                  example: 1
+                username:
+                  type: string
+                  example: 'member001'
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + provider_code + x-vendor-id)`
       responses:
         '200':
           $ref: "#/components/responses/PetResponse"
