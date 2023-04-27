@@ -394,37 +394,28 @@ paths:
               $ref: '#/components/schemas/User'
         description: Created user object
         required: true
-  /user/createWithArray:
+  /report/win_loss:
     post:
-      tags:
-        - user
-      summary: Creates list of users with given input array
-      description: ''
-      operationId: createUsersWithArrayInput
+      summary: Win Loss
+      description: Get member win loss records within member time under your agent.
       responses:
         default:
           description: successful operation
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
-  /user/createWithList:
+  /report/statement:
     post:
-      tags:
-        - user
-      summary: Creates list of users with given input array
-      description: ''
-      operationId: createUsersWithListInput
+      summary: Statement
+      description: Get credit statement record within members under your agent.
       responses:
         default:
           description: successful operation
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
-  /user/login:
-    get:
-      tags:
-        - user
-      summary: Logs user into the system
-      description: ''
-      operationId: loginUser
+  /report/outstanding:
+    post:
+      summary: Outstanding
+      description: find unsettled record each game within member played.
       parameters:
         - name: username
           in: query
@@ -461,13 +452,10 @@ paths:
                 type: string
         '400':
           description: Invalid username/password supplied
-  /user/logout:
-    get:
-      tags:
-        - user
-      summary: Logs out current logged in user session
-      description: ''
-      operationId: logoutUser
+  /report/bet_log:
+    post:
+      summary: Bet Log
+      description: find bet log detail record each game within member played.
       responses:
         default:
           description: successful operation
