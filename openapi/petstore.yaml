@@ -1,13 +1,11 @@
 openapi: 3.0.3
 
-servers:
-  - url: 'https://{endpoint_url}'
 info:
   title: LunaSoft Product API
   version: 1.0.10
-    x-logo:
+  x-logo:
       url:
-        /logolunasft.jpg
+        logolunasft.jpg
       backgroundColor:
         #FFFFFF
       altText:
@@ -126,6 +124,9 @@ info:
   contact:
     name: API Support LunaSoft Team
     email: developer@lunasoft.co
+    
+ servers:
+  - url: 'https://{endpoint_url}'
 
 paths:
   /create_member:
