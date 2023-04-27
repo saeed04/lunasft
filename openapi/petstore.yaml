@@ -2,13 +2,13 @@ openapi: 3.0.3
 servers:
   - url: 'https://{endpoint_url}'
 info:
-  title: LunaSoft Product API
+  title: Lnsoftapi Product API
   version: 1.0.10
 
   description: |
-    LunaSoft Product API for client integrate our product on fund wallet
+    Lnsoftapi Product API for client integrate our product on fund wallet
 
-    > LunaSoft will send the test integration with `(endpoint_url)`, `(X-BLS-KEY)`, `(X-Vendor-ID)`, `(Sign)`
+    > Lnsoftapi will send the test integration with `(endpoint_url)`, `(X-BLS-KEY)`, `(X-Vendor-ID)`, `(Sign)`
     to you. Your service agent must provider credential. which should be successfully integrated.
 
     ---
@@ -58,7 +58,7 @@ info:
     ### Authorization:
     | Key | In | Description 
     |-----|-----|-----
-    | X-BLS-Key | Header |  BillionSoft Key please ask our information
+    | X-BLS-Key | Header |  Lnsoftapi Key please ask our information
     | X-Vendor-ID | Header | Vendor ID generate by BillionSoft ask our information
     | Sign | Body | Sign is the signature key
 
@@ -118,7 +118,7 @@ info:
 
   contact:
     name: API Support LunaSoft Team
-    email: developer@lunasoft.co
+    email: developer@lnsoftapi.co
     
 
 
