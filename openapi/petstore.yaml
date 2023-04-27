@@ -242,15 +242,10 @@ paths:
         - petstore_auth:
             - 'write:pets'
             - 'read:pets'
-  /pet/findByTags:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by tags
-      description: >-
-        Muliple tags can be provided with comma separated strings. Use tag1,
-        tag2, tag3 for testing.
-      operationId: findPetsByTags
+  /launch_game:
+    post:
+      summary: Launch Game
+      description:  Get the game URL with game_code, the game is redirected to the lobby via this link. See **Provider Code** Section.
       parameters:
         - name: tags
           in: query
@@ -270,14 +265,10 @@ paths:
         - petstore_auth:
             - 'write:pets'
             - 'read:pets'
-      deprecated: true
-  '/pet/{petId}':
-    get:
-      tags:
-        - pet
-      summary: Find pet by ID
-      description: Returns a single pet
-      operationId: getPetById
+  '/login':
+    post:
+      summary: Login to Lobby
+      description:  Login with your member name and go to lobby for play game.
       parameters:
         - name: petId
           in: path
@@ -337,12 +328,9 @@ paths:
                 status:
                   description: Updated status of the pet
                   type: string
-    delete:
-      tags:
-        - pet
-      summary: Deletes a pet
-      description: ''
-      operationId: deletePet
+    /update_game_status:
+      summary: Game Status (Open/Close)
+      description: Update the game status by game_code. after update game status your member can't play game.
       parameters:
         - name: api_key
           in: header
@@ -367,13 +355,10 @@ paths:
         - petstore_auth:
             - 'write:pets'
             - 'read:pets'
-  '/pet/{petId}/uploadImage':
+  '/report/win_loss':
     post:
-      tags:
-        - pet
-      summary: uploads an image
-      description: ''
-      operationId: uploadFile
+      summary: 'Win Loss'
+      description: Get member win loss records within member time under your agent.
       parameters:
         - name: petId
           in: path
@@ -406,13 +391,10 @@ paths:
                   description: file to upload
                   type: string
                   format: binary
-  /store/inventory:
-    get:
-      tags:
-        - store
-      summary: Returns pet inventories by status
-      description: Returns a map of status codes to quantities
-      operationId: getInventory
+  /report/statement:
+    post:
+      summary: Statement
+      description: Get credit statement record within members under your agent.
       responses:
         '200':
           description: successful operation
@@ -425,13 +407,10 @@ paths:
                   format: int32
       security:
         - api_key: []
-  /store/order:
+  /report/outstanding:
     post:
-      tags:
-        - store
-      summary: Place an order for a pet
-      description: ''
-      operationId: placeOrder
+      summary: Outstanding
+      description: find unsettled record each game within member played.
       responses:
         '200':
           description: successful operation
@@ -451,14 +430,10 @@ paths:
               $ref: '#/components/schemas/Order'
         description: order placed for purchasing the pet
         required: true
-  '/store/order/{orderId}':
-    get:
-      tags:
-        - store
-      summary: Find purchase order by ID
-      description: >-
-        For valid response try integer IDs with value >= 1 and <= 10. Other
-        values will generated exceptions
+  '/report/bet_log':
+    post:
+      summary: Bet Log
+      description: find bet log detail record each game within member played.
       operationId: getOrderById
       parameters:
         - name: orderId
