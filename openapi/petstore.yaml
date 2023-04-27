@@ -208,11 +208,11 @@ paths:
       summary: Game List (Fish Game Only)
       description:  Get the fishing game URL, the game is redirected to the lobby via this link. See **Provider Code** Section.
       
-     responses:
+      responses:
         '200':
-          description: successful
+          $ref: "#/components/responses/PetResponse"
         '500':
-          description: Error
+          description: Invalid tag value
           
   /launch_game:
     post:
