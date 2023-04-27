@@ -220,31 +220,44 @@ paths:
         '200':
           $ref: "#/components/responses/PetResponse"
         '500':
-          description: Invalid tag value
+          description: Error
           
   /launch_game:
     post:
       summary: Launch Game
       description:  Get the game URL with game_code, the game is redirected to the lobby via this link. See **Provider Code** Section.
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter by
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+
       responses:
         '200':
           $ref: "#/components/responses/PetResponse"
-        '400':
-          description: Invalid tag value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        '500':
+          description: Error
+ requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                game_code:
+                  type: string
+                  example: "1"
+                provider_code:
+                  type: string
+                  example: "JK"
+                language:
+                  type: string
+                  description: Support TH, EN, CN
+                  example: "TH"
+                platform:
+                  type: string
+                  description: 1 = Desktop, 2 = Mobile
+                  example: 1
+                username:
+                  type: string
+                  example: 'member001'
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + provider_code + x-vendor-id)`
   '/login':
     post:
       summary: Login to Lobby
