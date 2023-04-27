@@ -384,59 +384,27 @@ paths:
     post:
       summary: Game Status (Open/Close)
       description: Update the game status by game_code. after update game status your member can't play game.
- responses:
-        '200':
-          description: successful 
-        '500':
-          description: Error
+
         
   /report/win_loss:
     post:
       summary: Win Loss
       description: Get member win loss records within member time under your agent.
- responses:
-        '200':
-          description: successful 
-        '500':
-          description: Error
+
   /report/statement:
     post:
       summary: Statement
       description: Get credit statement record within members under your agent.
- responses:
-        '200':
-          description: successful 
-        '500':
-          description: Error
+
   /report/outstanding:
     post:
       summary: Outstanding
       description: find unsettled record each game within member played.
-      parameters:
-        - name: username
-          in: query
-          description: The user name for login
-          required: true
-          schema:
-            type: string
-        - name: password
-          in: query
-          description: The password for login in clear text
-          required: true
-          schema:
-            type: string
- responses:
-        '200':
-          description: successful 
-        '500':
-          description: Error
+
+
   /report/bet_log:
     post:
       summary: Bet Log
       description: find bet log detail record each game within member played.
- responses:
-        '200':
-          description: successful 
-        '500':
-          description: Error
+
  
