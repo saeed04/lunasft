@@ -1,7 +1,6 @@
 openapi: 3.0.3
-title: BillionSoft Product API
+title: LunaSoft Product API
 version: 1.0.10
-  
 servers:
   - url: 'https://{endpoint_url}'
 info:
