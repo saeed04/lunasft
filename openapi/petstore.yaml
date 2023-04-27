@@ -5,7 +5,7 @@ info:
   title: Lnsoftapi Product API
   version: 1.0.10
   x-logo:
-    url: 'images/logo.png'
+    url: 'https://github.com/saeed04/lunasft/blob/0fb95f39872bdb18c1ed95478925d9629c49ac85/images/logo.png'
     altText: Lnsoftapi
   description: |
     Lnsoftapi Product API for client integrate our product on fund wallet
