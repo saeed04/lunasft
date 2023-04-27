@@ -378,10 +378,7 @@ paths:
         '200':
           description: successful 
         '500':
-          description: Error
-
-
-        
+          description: Error        
  /user:
     post:
       tags:
