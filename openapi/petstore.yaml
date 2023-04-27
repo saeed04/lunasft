@@ -4,10 +4,10 @@ servers:
 info:
   title: LunaSoft Product API
   version: 1.0.10
-  description: >-
-    BLS Product API for client integrate our product on fund wallet
+  description: |
+    LunaSoft Product API for client integrate our product on fund wallet
 
-    > Billionsoft will send the test integration with `(endpoint_url)`, `(X-BLS-KEY)`, `(X-Vendor-ID)`, `(Sign)`
+    > LunaSoft will send the test integration with `(endpoint_url)`, `(X-BLS-KEY)`, `(X-Vendor-ID)`, `(Sign)`
     to you. Your service agent must provider credential. which should be successfully integrated.
 
     ---
@@ -116,8 +116,8 @@ info:
     | RSG | Royal Slot Game
 
   contact:
-    name: API Support BillionSoft Team
-    email: developer@billionsoft.co
+    name: API Support LunaSoft Team
+    email: developer@lunasoft.co
 
 paths:
   /create_member:
