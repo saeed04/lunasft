@@ -384,3 +384,32 @@ paths:
           description: successful 
         '500':
           description: Error        
+  /update_game_status:
+    post:
+      summary: Game Status (Open/Close)
+      description: Update the game status by game_code. after update game status your member can't play game.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                  description: allow null if null = all member
+                provider_code:
+                  type: string
+                  example: "JK"
+                status:
+                  type: string
+                  description: open, close
+                  example: "close"
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(provider_code + x-vendor-id)`
+                         responses:
+        '200':
+          description: successful 
+        '500':
+          description: Error   
