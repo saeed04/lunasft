@@ -1,5 +1,6 @@
 openapi: 3.0.3
-
+servers:
+  - url: 'https://{endpoint_url}'
 info:
   title: LunaSoft Product API
   version: 1.0.10
@@ -119,8 +120,7 @@ info:
     name: API Support LunaSoft Team
     email: developer@lunasoft.co
     
- servers:
-  - url: 'https://{endpoint_url}'
+
 
 paths:
   /create_member:
