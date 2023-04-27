@@ -410,4 +410,108 @@ paths:
         '200':
           description: successful 
         '500':
-          description: Error   
+          description: Error  
+          
+          
+    /report/win_loss:
+    post:
+      summary: 'Win Loss'
+      description: Get member win loss records within member time under your agent.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                start_date:
+                  type: string
+                  format: YYYY-MM-DD
+                  example: "2023-01-01"
+                end_date:
+                  type: string
+                  format: YYYY-MM-DD
+                  example: "2023-01-01"
+                username:
+                  type: string
+                  example: 'member0001'
+                  description: allow null if null = all member
+                  default: null
+                provider_code:
+                  type: array
+                  description: empty = all provider
+                  example: ['JK', 'CQ9']
+                page:
+                  type: integer
+                  example: 1
+                  default: 1
+                limit:
+                  type: integer
+                  example: 50
+                  default: 50
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(start_date + end_date + x-vendor-id)`
+
+                    start_date and end_date format=YYYY-MM-DD
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - start_date
+                - end_date
+                - username
+                - page
+                - limit
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  page:
+                    type: integer
+                    example: 1
+                  limit:
+                    type: integer
+                    example: 50
+                  total:
+                    type: integer
+                    example: 100
+                  payload:
+                    type: object
+                    properties:
+                      total_turn_over:
+                        type: number
+                        example: 5000.0
+                      total_win_loss:
+                        type: number
+                        example: 5000.0
+                      total_comm:
+                        type: number
+                        example: 100.0
+                      total_valid_turn_over:
+                        type: number
+                        example: 500.0
+                      total_member_win_loss:
+                        type: number
+                        example: 500.0
+                      total_member_comm:
+                        type: number
+                        example: 50.0
+                      total_account_win_loss:
+                        type: number
+                        example: 500.0
+                      total_account_comm:
+                        type: number
+                        example: 500.0
+                      total_company_win_loss:
+                        type: number
+                        example: 5000.0
+                      total_company_comm:
+                        type: number
+                        example: 10.0
+        '500':
+          description: 'Response Error'
