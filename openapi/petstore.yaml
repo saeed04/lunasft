@@ -289,13 +289,10 @@ paths:
         '500':
           description: Error
    
-  /user:
+  /update_game_status:
     post:
-      tags:
-        - user
-      summary: Create user
-      description: This can only be done by the logged in user.
-      operationId: createUser
+      summary: Game Status (Open/Close)
+      description: Update the game status by game_code. after update game status your member can't play game.
       responses:
         default:
           description: successful operation
