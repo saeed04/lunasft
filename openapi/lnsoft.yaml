@@ -5,7 +5,7 @@ info:
   title: Lnsoftapi Product API
   version: 1.0.10
   x-logo:
-    url: 'https://api.redocly.com/registry/assets/lunasft/lunasft/1.0/logo.png?branch=main'
+    url: 'https://app.redocly.com/org/lunasft/definition/28180/version/1/files?branch=1&path=logo.png'
     altText: Lnsoftapi
   description: |
     Lnsoftapi Product API for client integrate our product on fund wallet
