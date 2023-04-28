@@ -1,0 +1,1176 @@
+openapi: 3.0.0
+info:
+  title: BillionSoft Product API
+  version: 1.0.10
+  x-logo:
+      url:
+        /logo.png
+      backgroundColor:
+        #FFFFFF
+      altText:
+        Billionsoft logo
+  description: |
+    BLS Product API for client integrate our product on fund wallet
+
+    > Billionsoft will send the test integration with `(endpoint_url)`, `(X-BLS-KEY)`, `(X-Vendor-ID)`, `(Sign)`
+    to you. Your service agent must provider credential. which should be successfully integrated.
+
+    ---
+
+    ### Release Version:
+
+    V1.0.0 - 2023/01/25
+    - Add create member, increase / decrease credit, and balance.
+
+    V1.0.1 - 2023/01/31
+    - Add launch game and game status.
+
+    V1.0.2 - 2023/02/15
+    - Add win loss, statement, outstanding and outstanding detail report.
+
+    V1.0.3 - 2023/02/27
+    - Update response status code.
+
+    V1.0.4 - 2023/03/01
+    - Update game code.
+    - Update request body in route `/report/outstanding` and `/report/outstanding_detail`.
+
+    V1.0.5 - 2023/03/03
+    - Add game list.
+    
+    V1.0.6 - 2023/03/16
+    - Add game_code in request body in route `/report/...`.
+    - Update request body in route `/report/outstanding` .
+    
+    V1.0.7 - 2023/03/16
+    - Change game_code to provider_code in route `/report/...`
+    - Update request body in route `/launch_game`
+    
+    V1.0.8 - 2023/03/31
+    - Add game_list_fishing
+    
+    V1.0.9 - 2023/04/08
+    - Add member login to lobby
+
+    V1.0.9 - 2023/04/10
+    - Add bet log
+    - Remove outstanding detail
+    - Update body of win loss report and outstanding
+    
+    ---
+
+    ### Authorization:
+    | Key | In | Description 
+    |-----|-----|-----
+    | X-BLS-Key | Header |  BillionSoft Key please ask our information
+    | X-Vendor-ID | Header | Vendor ID generate by BillionSoft ask our information
+    | Sign | Body | Sign is the signature key
+
+    </br>
+
+    ### Status Code:
+    | Status Code | Description
+    |-----|-----
+    | 0 | Response Success
+    | 14001 | Missing Body
+    | 14002 | Invalid Body Type
+    | 14003 | Invalid Body Pattern
+    | 14004 | Credit Insufficient
+    | 14006 | Member not found 
+    | 14031 | Access Denied
+    | 14012 | Unauthorized
+    | 14091 | Data not found
+    | 14092 | Data duplication
+    | 15001 | Service Error <b>Please contact support.</b>
+
+    </br>
+
+    ### Game Code:
+    | Provider Code | Provider Name
+    |-----|-----
+    | JK | JokerGaming
+    | PG | PGSoft
+    | PP | PragmaticPlay
+    | AMBS | AMB Slot
+    | AMBP | AMB Poker
+    | RT | Red Tiger
+    | CQ9 | CQ9
+    | SPG | Spade Gaming
+    | JL | Jili
+    | DGS | DragoonSoft
+    | NSP | Next Spin
+    | SPP | Simple Play
+    | I8 | i8Games
+    | EDP | Endorphina
+    | PPL | PlayPearls
+    | JP | JustPlay
+    | NET | NetEnt
+    | SML | Slot Mill
+    | SA | SA Gaming
+    | SX | SexyBaccarat
+    | WM | WM Casino
+    | XT | XtreamGaming
+    | AB | AllBet
+    | DGC | DreamGaming
+    | VVG | VivoGaming
+    | BG | Big Gaming
+    | EBT | EBET
+    | PPC | PragmaticPlay Casino
+    | UBT | UBETT
+    | RG | Royal GClub
+    | RSG | Royal Slot Game
+
+  contact:
+    name: API Support BillionSoft Team
+    email: developer@billionsoft.co
+
+servers:
+  - url: https://{endpoint_url}
+paths:
+  /create_member:
+    post:
+      summary: Create Member
+      description: |
+        member is unique value. we recommended to add prefixes when register ex blsmb0001
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                  minLength: 6
+                  maxLength: 18
+                password:
+                  type: string
+                  example: 'a@1234'
+                  description: 'Password should be at 6 - 24 characters long and at least one special character.'
+                  minLength: 6
+                  maxLength: 24
+                phone_number_contact:
+                  type: string
+                  example: '098765431'
+                  minLength: 9
+                memo:
+                  type: string
+                  example : 'memo'
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + password + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - username
+                - password
+                - sign
+      responses:
+        '200':
+          description: 'Response Success'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        example: 'member001'
+                        minLength: 6
+                        maxLength: 24
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  /change_password:
+    post:
+      summary: Change Password
+      description: Change member password by agent.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: member001
+                new_password:
+                  type: string
+                  example: 1234@b
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + new_password + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - username
+                - password
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload: 
+                    type: object
+                    example: null
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+
+  /balance:
+    post:
+      summary: 'Member Balance'
+      description: 'Call Member Balance'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
+              required:
+                - username
+                - sign
+      responses:
+        '200':
+          description: 'Response Success'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        example: 'member001'
+                      balance:
+                        type: number
+                        example: 100.25
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  /increase_credit:
+    post:
+      summary: 'Increase Credit'
+      description: increase your member credit.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                amount:
+                  type: number
+                  example: 50.0
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + amount + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - username
+                - amount
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload:
+                    type: object
+                    properties:                      
+                      username:
+                        type: string
+                        example: 'member001'
+                      balance:
+                        type: number
+                        example: 150.25
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  /decrease_credit:
+    post:
+      summary: 'Decrease Credit'
+      description: decrease your member credit.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                amount:
+                  type: number
+                  example: 50.0
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + amount + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - username
+                - amount
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload:
+                    type: object
+                    properties:                      
+                      username:
+                        type: string
+                        example: 'member001'
+                      balance:
+                        type: number
+                        example: 100.25
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+  
+  /game_list:
+    post:
+      summary: 'Game List (Slot Game Only)'
+      description: |
+        Get the game URL with provider_code, the game is redirected to the lobby via this link. See **Provider Code** Section.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                provider_code:
+                  type: string
+                  example: "JK"
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(provider_code + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
+              required:
+                - provider_code
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload:
+                    type: object
+                    properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: '1'
+                              file_name:
+                                type: string
+                                example: 'game/1671001215437.png'
+                              file_url:
+                                type: string
+                                example: 'https://masterbizsoft-assets.s3.ap-southeast-1.amazonaws.com/game/1671001215437.png'
+                              game_name:
+                                type: string
+                                example: 'CQ9'
+                              name:
+                                type: string
+                                example: 'Fruit King'
+                              status:
+                                type: boolean
+                                description: true = game is active, false = game closed.
+                                example: true
+
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  /game_list_fishing:
+    post:
+      summary: 'Game List (Fish Game Only)'
+      description: |
+        Get the fishing game URL, the game is redirected to the lobby via this link. See **Provider Code** Section.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(provider_code + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
+              required:
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload:
+                    type: object
+                    properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              _id:
+                                type: string
+                                example: '6401a3c11c19348be14bc246'
+                              code:
+                                type: string
+                                example: '1'
+                              game_name:
+                                type: string
+                                example: 'i8GAMES'
+                              name:
+                                type: string
+                                example: 'Cai Shen Fa Fa Fa'
+                              file_name:
+                                type: string
+                                example: 'Cai_Shen_Fa_Fa_Fa.png'
+                              file_url:
+                                type: string
+                                example: 'https://masterbizsoft-assets.s3.ap-southeast-1.amazonaws.com/game/1671001215437.png'
+                              status:
+                                type: boolean
+                                description: true = game is active, false = game closed.
+                                example: true
+
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  /launch_game:
+    post:
+      summary: 'Launch Game'
+      description: |
+        Get the game URL with game_code, the game is redirected to the lobby via this link. See **Provider Code** Section.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                game_code:
+                  type: string
+                  example: "1"
+                provider_code:
+                  type: string
+                  example: "JK"
+                language:
+                  type: string
+                  description: Support TH, EN, CN
+                  example: "TH"
+                platform:
+                  type: string
+                  description: 1 = Desktop, 2 = Mobile
+                  example: 1
+                username:
+                  type: string
+                  example: 'member001'
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + provider_code + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
+              required:
+                - provider_code
+                - username
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        example: 'http://abc.xyz/playGame'
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  /login:
+    post:
+      summary: 'Login to Lobby'
+      description: |
+        Login with your member name and go to lobby for play game.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  description: username must use prefix
+                  example: "blsmb0001_b1"
+                domain:
+                  type: string
+                  example: 'your-domain.demo'
+                  description: do not include proto [http, https] in value.
+                redirect_url:
+                  type: string
+                  description: redirect url for return to your lobby when user click logout
+                  example: "https://your-domain.demo"
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(username + x-vendor-id)`
+                  example: 'a3b2f435648d8a38eabb7d968332701b'
+              required:
+                - username
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        example: 'http://abc.xyz/authentication?token=1234abcd&redict&redirect_url=https://your-domain.demo'
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  /update_game_status:
+    post:
+      summary: Game Status (Open/Close)
+      description: Update the game status by game_code. after update game status your member can't play game.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: 'member001'
+                  description: allow null if null = all member
+                provider_code:
+                  type: string
+                  example: "JK"
+                status:
+                  type: string
+                  description: open, close
+                  example: "close"
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(provider_code + x-vendor-id)`
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - provider_code
+                - status
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  payload:
+                    type: object
+                    properties:
+                      status:
+                        type: boolean
+                        description: 'True = Open, False = Close'
+                        example: true
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  /report/win_loss:
+    post:
+      summary: 'Win Loss'
+      description: Get member win loss records within member time under your agent.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                start_date:
+                  type: string
+                  format: YYYY-MM-DD
+                  example: "2023-01-01"
+                end_date:
+                  type: string
+                  format: YYYY-MM-DD
+                  example: "2023-01-01"
+                username:
+                  type: string
+                  example: 'member0001'
+                  description: allow null if null = all member
+                  default: null
+                provider_code:
+                  type: array
+                  description: empty = all provider
+                  example: ['JK', 'CQ9']
+                page:
+                  type: integer
+                  example: 1
+                  default: 1
+                limit:
+                  type: integer
+                  example: 50
+                  default: 50
+                sign:
+                  type: string
+                  description: |
+                    `HMACMD5(start_date + end_date + x-vendor-id)`
+
+                    start_date and end_date format=YYYY-MM-DD
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - start_date
+                - end_date
+                - username
+                - page
+                - limit
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  page:
+                    type: integer
+                    example: 1
+                  limit:
+                    type: integer
+                    example: 50
+                  total:
+                    type: integer
+                    example: 100
+                  payload:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/WL'
+                      total_turn_over:
+                        type: number
+                        example: 5000.0
+                      total_win_loss:
+                        type: number
+                        example: 5000.0
+                      total_comm:
+                        type: number
+                        example: 100.0
+                      total_valid_turn_over:
+                        type: number
+                        example: 500.0
+                      total_member_win_loss:
+                        type: number
+                        example: 500.0
+                      total_member_comm:
+                        type: number
+                        example: 50.0
+                      total_account_win_loss:
+                        type: number
+                        example: 500.0
+                      total_account_comm:
+                        type: number
+                        example: 500.0
+                      total_company_win_loss:
+                        type: number
+                        example: 5000.0
+                      total_company_comm:
+                        type: number
+                        example: 10.0
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  /report/statement:
+    post:
+      summary: 'Statement'
+      description: Get credit statement record within members under your agent.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                start_date:
+                  type: string
+                  format: YYYY-MM-DD
+                  example: "2023-01-01"
+                end_date:
+                  type: string
+                  format: YYYY-MM-DD
+                  example: "2023-01-01"
+                username:
+                  type: string
+                  example: 'member0001'
+                  description: allow null if null = all member
+                  default: null
+                page:
+                  type: integer
+                  example: 1
+                  default: 1
+                limit:
+                  type: integer
+                  example: 50
+                  default: 50
+                sign:
+                  type: string
+                  description: |
+                    `MHACMD5(start_date + end_date + x-vendor-id)`
+                    
+                    start_date and end_date format=YYYY-MM-DD
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - start_date
+                - end_date
+                - page
+                - limit
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  page:
+                    type: integer
+                    example: 1
+                  limit:
+                    type: integer
+                    example: 50
+                  total:
+                    type: integer
+                    example: 100
+                  payload:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            username:
+                              type: string
+                              example: 'member001'
+                            transfer_amount:
+                              type: number
+                              example: 50.25
+                              description: negative value = debit
+                            credit_before:
+                              type: number
+                              example: 50
+                            credit_after:
+                              type: number
+                              example: 100.25
+                            created_at:
+                              type: string
+                              example: '2023-01-01T23:00:00.100'
+                            memo:
+                              type: string
+                              example: ''
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+          
+  /report/outstanding:
+    post:
+      summary: 'Outstanding'
+      description: find unsettled record each game within member played.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  description: allow null if null = all member
+                  example: 'member001'
+                start_date:
+                  type: string
+                  format: YYYY-MM-DD
+                  example: "2023-01-01"
+                end_date:
+                  type: string
+                  format: YYYY-MM-DD
+                  example: "2023-01-02"
+                page:
+                  type: integer
+                  example: 1
+                  default: 1
+                limit:
+                  type: integer
+                  example: 50
+                  default: 50
+                sign:
+                  type: string
+                  description: |
+                    `MHACMD5(start_date + end_date + x-vendor-id)`
+
+                    date format=YYYY-MM-DD
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - username
+                - start_date
+                - end_date
+                - page
+                - limit
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  page:
+                    type: integer
+                    example: 1
+                  limit:
+                    type: integer
+                    example: 50
+                  total:
+                    type: integer
+                    example: 100
+                  payload:
+                    type: object
+                    properties:
+                      total_member:
+                        type: integer
+                        example: 24
+                      total_turn_over:
+                        type: number
+                        example: 6543210
+                      total_transaction:
+                        type: integer
+                        example: 150
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '6433759511c151281a0cdd95'
+                            win_loss:
+                              type: number
+                              example: 0
+                            agent_code:
+                              type: string
+                              example: pn12345
+                            event_time:
+                              type: string
+                              example: '2023-01-01T12:00:00.000+0700'
+                            turn_over:
+                              type: number
+                              example: 1000.0
+                            status:
+                              type: string
+                              example: 'pending'
+                              description: status list = pending, completed, rejected
+                            result:
+                              type: object
+                            detail:
+                              type: object
+                              description: 'Object of Product'
+  /report/bet_log:
+    post:
+      summary: 'Bet Log'
+      description: find bet log detail record each game within member played.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                start_date:
+                  type: string
+                  format: YYYY-MM-DD HH:mm:ss
+                  example: "2023-01-01 23:59:59"
+                end_date:
+                  type: string
+                  format: YYYY-MM-DD HH:mm:ss
+                  example: "2023-01-02 00:00:00"
+                username:
+                  type: string
+                  description: allow null if null = all member
+                  example: 'member001'
+                provider_code:
+                  type: array
+                  description: empty = all provider
+                  example: ['JK', 'CQ9']
+                page:
+                  type: integer
+                  example: 1
+                  default: 1
+                limit:
+                  type: integer
+                  example: 50
+                  default: 50
+                sign:
+                  type: string
+                  description: |
+                    `MHACMD5(start_date + end_date + x-vendor-id)`
+
+                    date format=YYYY-MM-DD
+                  example: '4d9bf50cdb08e6796a772ca36f0d0dff'
+              required:
+                - start_date
+                - end_date
+                - provider
+                - page
+                - limit
+                - sign
+      responses:
+        '200':
+          description: Response Success
+          content:
+            application/json:
+              schema:
+                properties:
+                  status_code:
+                    type: integer
+                    example: 0
+                  page:
+                    type: integer
+                    example: 1
+                  limit:
+                    type: integer
+                    example: 50
+                  total:
+                    type: integer
+                    example: 100
+                  payload:
+                    type: object
+                    properties:
+                      total_turn_over:
+                        type: number
+                        example: 6543210
+                      total_bet:
+                        type: integer
+                        example: 150
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '6433759511c151281a0cdd95'
+                            win_loss:
+                              type: number
+                              example: 0
+                            agent_code:
+                              type: string
+                              example: pn12345
+                            event_time:
+                              type: string
+                              example: '2023-01-01T12:00:00.000+0700'
+                            turn_over:
+                              type: number
+                              example: 1000.0
+                            status:
+                              type: string
+                              example: 'pending'
+                              description: status list = pending, completed, rejected
+                            result:
+                              type: object
+                            detail:
+                              type: object
+                              description: 'Object of Product'
+        '500':
+          description: 'Response Error'
+          $ref: '#/components/responses/error'
+
+  # /report/refund:
+  #   post:
+  #     summary: 'Reject / Refund'
+  #     description: ''
+  #     responses:
+  #       '200':
+  #         description: Response Success
+  #         content:
+  #           application/json:
+  #             schema:
+  #               properties:
+  #                 status_code:
+  #                   type: integer
+  #                   example: 0
+  #                 page:
+  #                   type: integer
+  #                   example: 1
+  #                 limit:
+  #                   type: integer
+  #                   example: 50
+  #                 payload:
+  #                   type: object
+  #       '500':
+  #         description: 'Response Error'
+  #         $ref: '#/components/responses/error'
+
+security:
+  - x-bls-key: []
+    x-vendor-id: []
+
+components:
+  securitySchemes:
+    x-bls-key:
+      type: apiKey
+      in: header
+      name: X-BLS-KEY 
+    x-vendor-id:
+      type: apiKey
+      in: header
+      name: X-VENDOR-ID
+  responses:
+    '200':
+      description: Response Success
+    error:
+      description: Response Error
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                status_code: integer
+            properties:
+              status_code:
+                type: integer
+              payload:
+                type: object
+          examples:
+            Example 1:
+              value:
+                status_code: 15001
+                payload: null
+  schemas:
+    WL:
+      type: object
+      properties:
+        turn_over:
+          type: number
+          example: 1000.0
+        win_loss:
+          type: number
+          example: 1000.0
+        comm:
+          type: number
+          example: 30.0
+        valid_turn_over:
+          type: number
+          example: 100.0
+        member_win_loss:
+          type: number
+          example: 100.0
+        member_comm:
+          type: number
+          example: 10.0
+        account_win_loss:
+          type: number
+          example: 100.0
+        account_comm:
+          type: number
+          example: 100.0
+        company_win_loss:
+          type: number
+          example: 1000.0
+        company_comm:
+          type: number
+          example: 10.0
+        bet_amount:
+          type: integer
+          example: 5
+        type:
+          type: string
+          example: 'member'
+        partner_id:
+          type: integer
+          example: 10012
