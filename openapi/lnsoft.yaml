@@ -1,18 +1,18 @@
 openapi: 3.0.0
 info:
-  title: BillionSoft Product API
+  title: Lnsoftapi Product API
   version: 1.0.10
   x-logo:
       url:
-        /logo.png
+        https://api.redocly.com/registry/assets/lunasft/lunasft/1.0/logo.png?branch=main
       backgroundColor:
         #FFFFFF
       altText:
-        Billionsoft logo
+        Lnsoftapi logo
   description: |
-    BLS Product API for client integrate our product on fund wallet
+    Lnsoftapi Product API for client integrate our product on fund wallet
 
-    > Billionsoft will send the test integration with `(endpoint_url)`, `(X-BLS-KEY)`, `(X-Vendor-ID)`, `(Sign)`
+    > Lnsoftapi will send the test integration with `(endpoint_url)`, `(X-BLS-KEY)`, `(X-Vendor-ID)`, `(Sign)`
     to you. Your service agent must provider credential. which should be successfully integrated.
 
     ---
@@ -186,7 +186,6 @@ paths:
                         maxLength: 24
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   /change_password:
     post:
@@ -227,7 +226,6 @@ paths:
                     example: null
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
 
   /balance:
@@ -273,7 +271,6 @@ paths:
                         example: 100.25
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   /increase_credit:
     post:
@@ -321,7 +318,6 @@ paths:
                         example: 150.25
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   /decrease_credit:
     post:
@@ -369,7 +365,6 @@ paths:
                         example: 100.25
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
   
   /game_list:
     post:
@@ -433,7 +428,6 @@ paths:
 
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   /game_list_fishing:
     post:
@@ -496,7 +490,6 @@ paths:
 
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   /launch_game:
     post:
@@ -553,7 +546,6 @@ paths:
                         example: 'http://abc.xyz/playGame'
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   /login:
     post:
@@ -604,7 +596,6 @@ paths:
                         example: 'http://abc.xyz/authentication?token=1234abcd&redict&redirect_url=https://your-domain.demo'
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   /update_game_status:
     post:
@@ -655,7 +646,6 @@ paths:
                         example: true
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   /report/win_loss:
     post:
@@ -763,7 +753,6 @@ paths:
                         example: 10.0
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   /report/statement:
     post:
@@ -856,7 +845,6 @@ paths:
                               example: ''
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
           
   /report/outstanding:
     post:
@@ -1067,7 +1055,6 @@ paths:
                               description: 'Object of Product'
         '500':
           description: 'Response Error'
-          $ref: '#/components/responses/error'
 
   # /report/refund:
   #   post:
