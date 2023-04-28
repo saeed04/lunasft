@@ -3,7 +3,7 @@ servers:
   - url: 'https://{endpoint_url}'
 info:
   title: Lnsoftapi Product API
-  version: 1.10
+  version: 1.0.10
   x-logo:
     url: 'https://asia99th.org/wp-content/uploads/2023/04/Artwork.png'
     altText: Lnsoftapi
