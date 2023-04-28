@@ -2,13 +2,9 @@ openapi: 3.0.0
 info:
   title: Lnsoftapi Product API
   version: 1.0.10
-  x-logo:
-      url:
-        https://api.redocly.com/registry/assets/lunasft/lunasft/1.0/logo.png?branch=main
-      backgroundColor:
-        #FFFFFF
-      altText:
-        Lnsoftapi logo
+   x-logo:
+    url: 'https://api.redocly.com/registry/assets/lunasft/lunasft/1.0/logo.png?branch=main'
+    altText: Lunasoftapi
   description: |
     Lnsoftapi Product API for client integrate our product on fund wallet
 
